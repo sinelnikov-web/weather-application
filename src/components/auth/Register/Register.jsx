@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import component from "../Auth.module.scss"
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
@@ -7,7 +7,7 @@ import Form from "../../../ui/Form";
 import Loader from "../../../ui/Loader";
 import {useForm} from "../../../hooks/useForm";
 import {registrationSchema} from "../../../validation/shemas";
-import {createUser} from "../../database/database";
+import {createUser} from "../../../database/database";
 
 const Register = ({setView}) => {
 

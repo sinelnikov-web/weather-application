@@ -4,7 +4,7 @@ import Input from "../../ui/Input";
 import {Slide, Slider} from "../../components/Slider";
 import Loader from "../../ui/Loader";
 import WeatherModal from "../../components/WeatherModal";
-import {getUser, updateFavourites} from "../../components/database/database";
+import {getUser, updateFavourites} from "../../database/database";
 import {useNotification} from "../../hooks/useNotification";
 import Notification from "../../ui/Notification";
 
@@ -70,8 +70,9 @@ const Weather = () => {
                     />
                 </div>
                 <div className={component['weather__search-result']}>
-                    {search && <Slide onClick={handleClickSlide} setFavourite={handleSetFavourite} debounced cityName={search}
-                                      favourites={currentUser.favourites} active/>}
+                    {search &&
+                    <Slide onClick={handleClickSlide} setFavourite={handleSetFavourite} debounced cityName={search}
+                           favourites={currentUser.favourites} active/>}
                 </div>
             </div>
             <hr/>
@@ -81,7 +82,7 @@ const Weather = () => {
             {(showModal && currentWeather) &&
             <WeatherModal currentWeather={currentWeather} setShowModal={setShowModal}/>}
             {notifications.map((notification) => {
-                return(
+                return (
                     <Notification key={notification.id} onClose={onClose} {...notification}/>
                 )
             })}

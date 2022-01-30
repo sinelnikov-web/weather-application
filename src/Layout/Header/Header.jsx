@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from "../../components/Menu";
 import Container from "../../components/Container/Container";
 import component from "./Header.module.scss"
-import {getUser} from "../../components/database/database";
+import {getUser} from "../../database/database";
 
 const Header = () => {
 
