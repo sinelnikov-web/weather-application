@@ -5,6 +5,8 @@ import {Slide, Slider} from "../../components/Slider";
 import Loader from "../../ui/Loader";
 import WeatherModal from "../../components/WeatherModal";
 import {getUser, updateFavourites} from "../../components/database/database";
+import {useNotification} from "../../hooks/useNotification";
+import Notification from "../../ui/Notification";
 
 const Weather = () => {
 
@@ -17,6 +19,12 @@ const Weather = () => {
     const [currentWeather, setCurrentWeather] = useState(null)
 
     let [currentUser, setCurrentUser] = useState(user)
+
+    const {
+        showNotification,
+        onClose,
+        notifications
+    } = useNotification()
 
     const handleSearch = (e) => {
         setSearch(e.target.value)
@@ -32,6 +40,11 @@ const Weather = () => {
         setLoading(true)
         setTimeout(() => {
             let favourites = updateFavourites(currentUser.email, name)
+            if (favourites.length > currentUser.favourites.length) {
+                showNotification('Add to favourite success!', 'success', 3000)
+            } else {
+                showNotification('Delete from favourite success! Delete from favourite success! Delete from favourite success! Delete from favourite success!', 'info', 3000)
+            }
             setCurrentUser(prev => ({...prev, favourites: favourites}))
             setLoading(false)
         }, 1000)
@@ -61,11 +74,17 @@ const Weather = () => {
                                       favourites={currentUser.favourites} active/>}
                 </div>
             </div>
+            <hr/>
             <h1 className={component.weather__title}>Favourites</h1>
             <Slider currentUser={currentUser} setFavourite={handleSetFavourite} onSlideClick={handleClickSlide}/>
             {loading && <Loader/>}
             {(showModal && currentWeather) &&
             <WeatherModal currentWeather={currentWeather} setShowModal={setShowModal}/>}
+            {notifications.map((notification) => {
+                return(
+                    <Notification key={notification.id} onClose={onClose} {...notification}/>
+                )
+            })}
         </section>
     );
 };

@@ -6,3 +6,16 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+#notifications {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 312px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+    z-index: 999999;
+}

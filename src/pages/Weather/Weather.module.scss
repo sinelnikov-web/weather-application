@@ -11,6 +11,13 @@
     margin: 0 auto;
     padding: 40px 0;
 
+    hr {
+        margin: 10px 0;
+        height: 2px;
+        background-color: black;
+        width: 100%;
+    }
+
     @media (max-width: 720px) {
         max-width: none;
     }

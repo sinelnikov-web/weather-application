@@ -6,7 +6,7 @@ export class Weather {
             const response = await WeatherApi.get(`weather?q=${city}`)
             return Promise.resolve(response.data)
         } catch (err) {
-            console.log(err)
+            return Promise.reject(err)
         }
     }
 }

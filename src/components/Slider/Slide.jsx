@@ -5,12 +5,20 @@ import {Weather as WeatherAPI} from "../../api/weather";
 import {Image} from "../../api/image";
 import {useDebounce} from "../../hooks/useDebounce";
 import Loader from "../../ui/Loader";
+import {useNotification} from "../../hooks/useNotification";
+import Notification from "../../ui/Notification";
 
 const Slide = ({setFavourite, cityName, debounced, favourites, active, onClick}) => {
 
     const [city, setCity] = useState(null)
     const [weather, setWeather] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
+
+    const {
+        showNotification,
+        onClose,
+        notifications
+    } = useNotification()
 
     const fetchQuery = (query) => {
         setIsFetching(true)
@@ -28,7 +36,9 @@ const Slide = ({setFavourite, cityName, debounced, favourites, active, onClick})
                     setWeather(data)
                 })
             }
-        }).finally(() => setIsFetching(false))
+        })
+            .catch(err => showNotification('Город не найден :(', 'error', 5000))
+            .finally(() => setIsFetching(false))
     }
 
     const debouncedFetchQuery = useDebounce(() => fetchQuery(cityName), 1000)
@@ -56,6 +66,11 @@ const Slide = ({setFavourite, cityName, debounced, favourites, active, onClick})
                 </div>
             </div>}
             {isFetching && <Loader/>}
+            {notifications.map((notification) => {
+                return(
+                    <Notification key={notification.id} onClose={onClose} {...notification}/>
+                )
+            })}
         </Fragment>
     );
 };
