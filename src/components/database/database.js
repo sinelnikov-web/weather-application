@@ -11,7 +11,6 @@ export function getDatabase() {
 
 export function authenticate({email, password}) {
     let database = getDatabase()
-    console.log(database)
     let response = {
         data: null,
         message: ''
@@ -27,7 +26,6 @@ export function authenticate({email, password}) {
 
 export function createUser({email, password, firstName, lastName}) {
     let database = getDatabase()
-    console.log(database)
     let response = {
         data: null,
         message: ''

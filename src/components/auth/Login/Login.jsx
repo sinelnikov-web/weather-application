@@ -33,7 +33,9 @@ const Login = ({setView}) => {
         errors,
         onSubmit,
         handlers,
-        isSubmitting
+        isSubmitting,
+        setErrors,
+        setIsSubmitting
     } = useForm({
         email: '',
         password: ''
@@ -50,8 +52,16 @@ const Login = ({setView}) => {
             localStorage.setItem('authenticatedUser', values.email)
             window.location.reload()
         }).catch(err => {
-            errors.email = err.message
-            errors.password = err.message
+            setTimeout(() => {
+                setIsSubmitting(false)
+                setErrors(prev => {
+                    return {
+                        ...prev,
+                        email: err.message,
+                        password: err.message
+                    }
+                })
+            }, 2000)
         })
     }
 

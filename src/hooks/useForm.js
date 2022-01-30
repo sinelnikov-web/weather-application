@@ -37,8 +37,10 @@ export function useForm(fields, validationSchema) {
             onBlur
         },
         isSubmitting,
+        setIsSubmitting,
         onSubmit,
         errors,
+        setErrors,
         values
     }
 }

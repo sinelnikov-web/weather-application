@@ -54,7 +54,9 @@ const Register = ({setView}) => {
         errors,
         isSubmitting,
         handlers,
-        values
+        values,
+        setErrors,
+        setIsSubmitting
     } = useForm({
         firstName: '',
         lastName: '',
@@ -73,7 +75,10 @@ const Register = ({setView}) => {
         createUser(values).then(res => {
             window.location.reload()
         }).catch(err => {
-            errors.email = err.message
+            setTimeout(() => {
+                setIsSubmitting(false)
+                setErrors(prev => ({...prev, email: err.message}))
+            }, 2000)
         })
     }
 
