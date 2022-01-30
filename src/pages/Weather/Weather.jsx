@@ -41,7 +41,7 @@ const Weather = () => {
         setTimeout(() => {
             let favourites = updateFavourites(currentUser.email, name)
             if (favourites.length > currentUser.favourites.length) {
-                showNotification('Add to favourite success!', 'success', 3000)
+                showNotification('Add to favourite success!', 'success', 900000)
             } else {
                 showNotification('Delete from favourite success! Delete from favourite success! Delete from favourite success! Delete from favourite success!', 'info', 3000)
             }

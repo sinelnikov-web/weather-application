@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 
 let notificationsRoot = document.getElementById('notifications')
 
-const Notification = ({message, onClose, type='default', id}) => {
+const Notification = ({message, onClose, type='default', id, time}) => {
 
     const notificationTypeClasses = {
         'error': 'notification--error',
@@ -23,7 +23,7 @@ const Notification = ({message, onClose, type='default', id}) => {
         if (!stopTimer) {
             let interval = setInterval(() => {
                 setProgress(prev => prev - 1)
-            }, Math.floor(3000 / 100))
+            }, Math.floor(time / 100))
             setIntervalId(interval)
             return () => {
                 clearInterval(interval)

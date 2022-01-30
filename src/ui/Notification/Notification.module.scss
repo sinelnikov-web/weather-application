@@ -14,10 +14,6 @@
     overflow: hidden;
     cursor: pointer;
 
-    @media (max-width: 320px) {
-        max-width: 260px;
-    }
-
     &__body {
         flex: 1 1 auto;
         margin: auto 0;
