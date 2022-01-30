@@ -78,7 +78,7 @@ const Register = ({setView}) => {
             setTimeout(() => {
                 setIsSubmitting(false)
                 setErrors(prev => ({...prev, email: err.message}))
-            }, 2000)
+            }, 3000)
         })
     }
 

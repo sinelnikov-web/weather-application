@@ -1,13 +1,7 @@
 import React, {useState} from 'react';
-import {WeatherResponseType} from "../../api/weather";
 import component from "./WeatherModal.module.scss";
 
-interface IWeatherModalProps {
-    currentWeather: WeatherResponseType,
-    setShowModal: (state: boolean) => void,
-}
-
-const WeatherModal: React.FC<IWeatherModalProps> = ({currentWeather, setShowModal}) => {
+const WeatherModal = ({currentWeather, setShowModal}) => {
 
     const [animation, setAnimation] = useState(false)
 

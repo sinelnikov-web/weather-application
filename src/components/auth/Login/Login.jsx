@@ -61,7 +61,7 @@ const Login = ({setView}) => {
                         password: err.message
                     }
                 })
-            }, 2000)
+            }, 3000)
         })
     }
 
